@@ -4,7 +4,7 @@
     <div style="display: none" id="content">
       <h3>Hello ProseMirror</h3>
 
-      <p>This is editable text. You can focus it and start typing.</p>
+      <p>This is an editable text. You can focus on it and start typing.</p>
 
       <p>To apply styling, you can select a piece of text and manipulate
       its styling from the menu. The basic schema
@@ -12,12 +12,15 @@
       text</strong>, <a href="http://marijnhaverbeke.nl/blog">links</a>, <code>code
       font</code>, and <img src="/img/smiley.png"> images.</p>
 
-      <p>Block-level structure can be manipulated with key bindings (try
+      <p>A block-level structure can be manipulated with key bindings (try
       ctrl-shift-2 to create a level 2 heading, or enter in an empty
       textblock to exit the parent block), or through the menu.</p>
 
       <p>Try using the “list” item in the menu to wrap this paragraph in
       a numbered list.</p>
+    </div>
+    <div>
+      <button class="btn" :click="getCurrentView">Currentview</button>
     </div>
   </div>
 </template>
@@ -26,6 +29,11 @@
   @import"https://prosemirror.net/css/editor.css"
 </style>
 <style>
+  .btn {
+    float: right;
+    padding: 5px;
+    cursor: pointer;
+  }
   .ProseMirror-menubar {
     min-height: 30px !important;
   }
@@ -126,7 +134,7 @@ export default {
     //   marks: schema.spec.marks
     // })
 
-    window.view = new EditorView(document.querySelector("#editor"), {
+    this.Currentview = new EditorView(document.querySelector("#editor"), {
       state: EditorState.create({
         doc: DOMParser.fromSchema(footnoteSchema).parse(document.querySelector("#content")),
         plugins: exampleSetup({schema: footnoteSchema, menuContent: menu.fullMenu})
@@ -135,6 +143,19 @@ export default {
         footnote(node, view, getPos) { return new FootnoteView(node, view, getPos) }
       }
     });
+    window.vue = this.Currentview;
   },
+
+  data() {
+    return {
+      Currentview : null,
+    }
+  },
+
+  methods: {
+    getCurrentView() {
+      console.log(this.currentView);
+    },
+  }
 };
 </script>

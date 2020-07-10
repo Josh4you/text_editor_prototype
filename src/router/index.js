@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Quill from '../components/Quill/Index.vue'
 import Prosmirror from '../components/Prosmirror/Index.vue'
-import Slate from '../components/Slate/Index.vue'
+import TinyMCE from '../components/TinyMCE/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -24,9 +24,9 @@ const routes = [
     component: Prosmirror
   },
   {
-    path: '/slate',
-    name: 'Slate',
-    component: Slate
+    path: '/tinyMCE',
+    name: 'TinyMCE',
+    component: TinyMCE
   },
   {
     path: '/about',
